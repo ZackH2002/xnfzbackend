@@ -15,7 +15,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder().title("虚拟仿真实训管理云平台API文档")
                 .description("虚拟仿真实训管理云平台API文档")
