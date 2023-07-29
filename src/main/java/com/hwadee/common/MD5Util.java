@@ -57,19 +57,24 @@ public class MD5Util {
             // 得到数据的信息摘要
             byte[] digest = md5.digest();
             // 将字节数据转化为16进制
-
+            return fromBytesToHex(digest);
         }catch (Exception e){
             e.printStackTrace();
         }
         return null;
     }
 
-    /**
-     * 测试转换进制函数
-     */
 //    public static void main(String[] args) {
-//        byte[] a = {1,2,3,10, 11, 15,16,20,55};
-//        String s = fromBytesToHex(a);
-//        System.out.println(s);
-//    }
+//    /**
+//     * 测试转换进制函数
+//     */
+////        byte[] a = {1,2,3,10, 11, 15,16,20,55};
+////        String s = fromBytesToHex(a);
+////        System.out.println(s);
+//        /**
+//         * 测试加盐算法
+//         */
+//        String hwadee = encryptMD5AndSalt("123456", "hwadee");
+//        System.out.println(hwadee);
+//     }
 }
