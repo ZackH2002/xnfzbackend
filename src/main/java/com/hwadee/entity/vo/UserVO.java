@@ -9,11 +9,6 @@ import lombok.EqualsAndHashCode;
 @ApiModel(value = "userVO对象")
 @Data
 public class UserVO extends User {
-    /**
-     * 用于存放教师编号或者学生编号
-     */
+    //用于存放教师编号或者学生编号
     private String number;
-
-
-
 }
