@@ -59,7 +59,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                 student.setStudentNumber(number);
                 int insertStudent = studentMapper.insert(student);
                 return Math.max(insertStudent, 0);
-            } else if (user.getType().equals(Constant.USER_TEACHER)) {
+            }
+            else if(user.getType().equals(Constant.USER_TEACHER)) {
                 // 用户数据为教师，就往教师表中插入数据
                 Teacher teacher = new Teacher();
                 teacher.setUserId(user.getUserId());
@@ -69,5 +70,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             }
         }
         return Math.max(insertNumber, 0);
+    }
+
+    @Override
+    public User getUserByLoginInfo(String account, String password){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("account", account).eq("password",password);
+        User user = userMapper.selectOne(queryWrapper);
+        return user;
     }
 }

@@ -17,4 +17,6 @@ public interface IUserService extends IService<User> {
      * @return
      */
     int register(User user, String number);
+
+    User getUserByLoginInfo(String account, String password);
 }

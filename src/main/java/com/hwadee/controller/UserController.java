@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -51,7 +49,8 @@ public class UserController {
         if(user != null){
             // 1.1 如果用户名存在，则提示用户请重新输入用户名
             return R.error().message("用户名已存在，请重新输入用户名。");
-        }else{
+        }
+        else{
             user = new User();
         }
 
@@ -86,7 +85,8 @@ public class UserController {
         User userByAccountName = userService.getUserByAccountName(account);
         if(Objects.isNull(userByAccountName)){
             System.out.println("用户名不存在，请继续操作。");
-        }else {
+        }
+        else{
             return R.error().message("账号已存在，请重新提交。");
         }
         return R.ok();
