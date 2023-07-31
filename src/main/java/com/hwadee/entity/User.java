@@ -33,9 +33,6 @@ public class User implements Serializable {
     // 简介
     private String intro;
 
-    // 数字
-    private String number;
-
     // 手机号码
     private String phone;
 
