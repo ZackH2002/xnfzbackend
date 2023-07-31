@@ -72,6 +72,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return Math.max(insertNumber, 0);
     }
 
+    /**
+     *  根据账号密码获取用户
+     * @param account
+     * @param password
+     * @return
+     */
     @Override
     public User getUserByLoginInfo(String account, String password){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
