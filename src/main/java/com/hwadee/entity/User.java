@@ -21,27 +21,30 @@ public class User implements Serializable {
     // 姓名
     private  String name;
 
-    // 邮箱
-    private  String email;
-
-    // 手机号码
-    private String phone;
-
-    // 创建时间
-    private Date createTime;
-
     // 账号
     private String account;
+
+    // 邮箱
+    private  String email;
 
     // 密码
     private String password;
 
     // 简介
-    private String intro;
+    private String briefIntro;
+
+    // 数字
+    private String number;
+
+    // 手机号码
+    private String phone;
+
+    // 类型
+    private String type;
+
+    // 创建时间
+    private Date createTime;
 
     // 更新时间
     private Date updateTime;
-
-    // 用户类型
-    private String type;
 }
