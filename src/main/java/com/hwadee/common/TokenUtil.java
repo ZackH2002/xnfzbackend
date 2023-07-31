@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.hwadee.entity.User;
+import org.junit.Test;
 
 import java.util.Date;
 
@@ -45,7 +46,7 @@ public class TokenUtil {
     }
 
 
-    // 测试
+//    // 测试
 //    public static void main(String[] args) {
 //        //生成Token
 ////        User u = new User();
@@ -56,4 +57,18 @@ public class TokenUtil {
 //                "D3Xgj36xXwD_8MAeDUaFVMSQER4o";
 //        System.out.println(verify(token));
 //    }
+
+    @Test
+    public void test(){
+       // 生成Token
+        User u = new User();
+        String sign = sign(u);
+        System.out.println(sign);
+    }
+    @Test
+    public void testVerify(){
+        //验证Token
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCIsImV4cCI6MTY5MDYyNDI5OX0.ES63_nZlYQbTMLNGrv0krl7s6HDFluprFpPP2VMlLnk";
+        System.out.println(verify(token));
+    }
 }
