@@ -16,5 +16,5 @@ public interface IUserService extends IService<User> {
      * @param user
      * @return
      */
-    int register(User user);
+    int register(User user, String number);
 }

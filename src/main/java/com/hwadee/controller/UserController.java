@@ -1,8 +1,10 @@
 package com.hwadee.controller;
 
 import com.alibaba.druid.util.StringUtils;
+import com.hwadee.common.MD5Util;
 import com.hwadee.common.R;
 import com.hwadee.entity.User;
+import com.hwadee.entity.vo.UserVO;
 import com.hwadee.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,30 +31,53 @@ public class UserController {
     private IUserService userService;
     /**
      * 注册方法
-     * @param user
+     * @param userVO
      * @return
      */
     @PostMapping("register")
     @ApiOperation("注册用户")
-    public R register(@RequestBody User user){
-        if(StringUtils.isEmpty(user.getName())
-                || StringUtils.isEmpty(user.getPhone())
-                || StringUtils.isEmpty(user.getAccount())
-                || StringUtils.isEmpty(user.getPassword())
-                || StringUtils.isEmpty(user.getType())){
+    public R register(@RequestBody UserVO userVO){
+        if(StringUtils.isEmpty(userVO.getName())
+                || StringUtils.isEmpty(userVO.getPhone())
+                || StringUtils.isEmpty(userVO.getAccount())
+                || StringUtils.isEmpty(userVO.getPassword())
+                || StringUtils.isEmpty(userVO.getType())
+                || StringUtils.isEmpty(userVO.getNumber())){
             return R.error().message("参数异常，请输入必填项。");
         }
 
         // 1. 通过用户名检查用户是否存在
-        // 1.1 如果用户名存在，则提示用户请重新输入用户名
-        // 1.2 如果不存在则调用业务层方法进行注册并加上创建时间和更新时间
+        User user = userService.getUserByAccountName(userVO.getAccount());
+        if(user != null){
+
+            // 1.1 如果用户名存在，则提示用户请重新输入用户名
+            return R.error().message("用户名已存在，请重新输入用户名。");
+        }else{
+            user = new User();
+        }
+
+        // 将前端数据封装成实体对象
+        user.setAccount(userVO.getAccount());
+        user.setEmail(userVO.getEmail());
+        user.setName(userVO.getName());
+        user.setPassword(MD5Util.encryptMD5AndSalt(userVO.getPassword(), MD5Util.DEFAULT_SALT));
+        user.setPhone(userVO.getPhone());
+        user.setType(userVO.getType());
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
 
-        Map<String, Object> result = new HashMap<>();
-        result.put("user", user);
-
-        return R.ok().data(result);
+        // 保存数据
+        try{
+            int registerNumber = userService.register(user, userVO.getNumber());
+            if(registerNumber > 0){
+                return R.ok().message("用户注册成功");
+            }else {
+                return R.error().message("用户注册失败");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return R.error();
     }
 
     @PostMapping("accountExist")

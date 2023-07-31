@@ -8,6 +8,11 @@ import java.security.MessageDigest;
 public class MD5Util {
 
     /**
+     * 通用默认盐值
+     */
+    public static final String DEFAULT_SALT = "hwadee";
+
+    /**
      * 数据和盐值进行拼接
      * @param data
      * @param salt
