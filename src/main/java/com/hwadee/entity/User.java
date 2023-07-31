@@ -31,7 +31,7 @@ public class User implements Serializable {
     private String password;
 
     // 简介
-    private String briefIntro;
+    private String intro;
 
     // 数字
     private String number;
