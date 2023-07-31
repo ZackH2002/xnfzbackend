@@ -16,7 +16,7 @@ public class User implements Serializable {
 
     // 用户ID
     @TableId(value = "user_id", type = IdType.AUTO)
-    private Integer UserId;
+    private Integer userId;
 
     // 姓名
     private  String name;

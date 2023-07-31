@@ -20,6 +20,4 @@ public class Student implements Serializable {
 
     // 学号
     private String studentNumber;
-
-    //
 }

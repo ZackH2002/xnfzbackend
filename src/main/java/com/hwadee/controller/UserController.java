@@ -49,7 +49,6 @@ public class UserController {
         // 1. 通过用户名检查用户是否存在
         User user = userService.getUserByAccountName(userVO.getAccount());
         if(user != null){
-
             // 1.1 如果用户名存在，则提示用户请重新输入用户名
             return R.error().message("用户名已存在，请重新输入用户名。");
         }else{
