@@ -18,5 +18,11 @@ public interface IUserService extends IService<User> {
      */
     int register(User user, String number);
 
+    /**
+     * 根据用户名、账号查找用户
+     * @param account
+     * @param password
+     * @return
+     */
     User getUserByLoginInfo(String account, String password);
 }
