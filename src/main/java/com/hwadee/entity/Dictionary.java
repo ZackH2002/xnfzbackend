@@ -1,12 +1,14 @@
 package com.hwadee.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
+@TableName("dictionary")
 public class Dictionary implements Serializable {
     /**
      * 字典ID

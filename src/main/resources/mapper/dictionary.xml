@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hwadee.mapper.DictionaryMapper">
+    <!--namespace根据自己需要创建的的mapper的路径和名称填写-->
+    <!--根据typeCode和parentItemId查询-->
+    <select id="listByTypeCodeAndPid" resultType="Dictionary">
+        select
+            dicItemId,
+            codeName,
+            codeValue,
+            typeCode,
+            parentItemId
+        from dictionary where isDelete = 1 and typeCode = #{typeCode} and parentItemId = #{parentItemId}
+    </select>
+</mapper>
