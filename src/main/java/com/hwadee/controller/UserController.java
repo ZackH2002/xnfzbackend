@@ -78,7 +78,7 @@ public class UserController {
         return R.error();
     }
 
-    @PostMapping("accountExist")
+    @PostMapping("accountIsExist")
     @ApiOperation("判断用户名是否存在")
     public R accountIsExist(@RequestBody String account){
         //通过账号获取对象是否存在

@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Data
 public class Menu implements Serializable {
+
     private Integer menuId;
     private String cname;
     private String ename;
