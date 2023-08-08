@@ -7,6 +7,7 @@ import com.hwadee.service.ISimulationEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,11 +21,13 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
 
     @Override
     public int updateSimulationEquipment(SimulationEquipment simulationEquipment) {
+        simulationEquipment.setUpdateTime(new Date());
         return simulationEquipmentMapper.updateById(simulationEquipment);
     }
 
     @Override
     public int addSimulationEquipment(SimulationEquipment simulationEquipment) {
+        simulationEquipment.setCreateTime(new Date());
         return simulationEquipmentMapper.insert(simulationEquipment);
     }
 
