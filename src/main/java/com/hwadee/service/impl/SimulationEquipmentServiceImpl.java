@@ -1,7 +1,10 @@
 package com.hwadee.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hwadee.entity.SimulationEquipment;
+import com.hwadee.entity.vo.SimulationEquipmentReq;
 import com.hwadee.mapper.SimulationEquipmentMapper;
 import com.hwadee.service.ISimulationEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +18,8 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
     @Autowired
     private SimulationEquipmentMapper simulationEquipmentMapper;
     @Override
-    public List<SimulationEquipment> listSimulationEquipment() {
-        return simulationEquipmentMapper.listSimulationEquipment();
+    public Page<SimulationEquipment> getSimulationEquipmentPage(Page<SimulationEquipment> page) {
+        return simulationEquipmentMapper.selectPage(page, null);
     }
 
     @Override
