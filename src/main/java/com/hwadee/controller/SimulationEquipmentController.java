@@ -8,7 +8,6 @@ import com.hwadee.service.ISimulationEquipmentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller
+@RestController
 @Api(value = "虚拟仿真设备接口类", tags = "虚拟仿真设备接口")
 @RequestMapping("/simulationEquipment")
 public class SimulationEquipmentController {
