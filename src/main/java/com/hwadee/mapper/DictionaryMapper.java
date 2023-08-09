@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface DictionaryMapper extends BaseMapper<Dictionary> {
     List<Dictionary> listByTypeCodeAndPid (String typeCode, Integer parentItemId);
+    List<Dictionary> listDictionary();
 }

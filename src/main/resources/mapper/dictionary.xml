@@ -12,4 +12,13 @@
             parentItemId
         from dictionary where isDelete = 1 and typeCode = #{typeCode} and parentItemId = #{parentItemId}
     </select>
+    <select id="listDictionary" resultType="Dictionary">
+        select
+            dicItemId,
+            codeName,
+            codeValue,
+            typeCode,
+            parentItemId
+        from dictionary
+    </select>
 </mapper>

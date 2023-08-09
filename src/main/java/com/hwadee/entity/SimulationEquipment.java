@@ -7,7 +7,6 @@ import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.hwadee.common.StatusConverter;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +20,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SimulationEquipment {
-
     //设备id
     @TableId(value = "simulation_equipment_id", type = IdType.AUTO)
     @ExcelIgnore
@@ -51,7 +49,7 @@ public class SimulationEquipment {
     @ColumnWidth(20)
     private String supplier;
     //  状态
-    @ExcelProperty(value = "设备状态", converter = StatusConverter.class)
+    @ExcelProperty(value = "设备状态")
     @ColumnWidth(20)
     private String status;
     // 设备用途
@@ -68,11 +66,11 @@ public class SimulationEquipment {
     // 创建时间
     @ExcelProperty("创建时间")
     @ColumnWidth(20)
-    @DateTimeFormat("yyyy-mm-dd")
+    @DateTimeFormat("yyyy-mm-dd hh:mm:ss")
     private Date createTime;
     // 更新时间
     @ExcelProperty("更新时间")
     @ColumnWidth(20)
-    @DateTimeFormat("yyyy-mm-dd")
+    @DateTimeFormat("yyyy-mm-dd hh:mm:ss")
     private Date updateTime;
 }

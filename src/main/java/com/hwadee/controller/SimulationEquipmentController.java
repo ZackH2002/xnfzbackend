@@ -70,7 +70,7 @@ public class SimulationEquipmentController {
      */
     @PostMapping("deleteSimulationEquipment")
     @ApiOperation("删除虚拟仿真设备")
-    public R deleteSimulationEquipmentById(@RequestBody int simulationEquipmentId){
+    public R deleteSimulationEquipmentById(int simulationEquipmentId){
         int result = simulationEquipmentService.deleteSimulationEquipment(simulationEquipmentId);
         if(result > 0){
             return R.ok().message("删除成功");
