@@ -9,13 +9,17 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hwadee.common.StatusConverter;
 import io.swagger.annotations.ApiModel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @TableName("simulation_equipment")
 @ApiModel(value = "simulation_equipment对象")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SimulationEquipment {
 
     //设备id
@@ -49,7 +53,7 @@ public class SimulationEquipment {
     //  状态
     @ExcelProperty(value = "设备状态", converter = StatusConverter.class)
     @ColumnWidth(20)
-    private int status;
+    private String status;
     // 设备用途
     @ExcelProperty("设备用途")
     @ColumnWidth(20)

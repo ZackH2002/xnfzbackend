@@ -5,18 +5,18 @@ import com.hwadee.common.R;
 import com.hwadee.entity.SimulationEquipment;
 import com.hwadee.entity.vo.SimulationEquipmentReq;
 import com.hwadee.service.ISimulationEquipmentService;
-import com.sun.deploy.net.URLEncoder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
+@Controller
 @Api(value = "虚拟仿真设备接口类", tags = "虚拟仿真设备接口")
 @RequestMapping("/simulationEquipment")
 public class SimulationEquipmentController {
@@ -69,7 +69,7 @@ public class SimulationEquipmentController {
     /**
      * 删除设备
      */
-    @DeleteMapping("deleteSimulationEquipment")
+    @PostMapping("deleteSimulationEquipment")
     @ApiOperation("删除虚拟仿真设备")
     public R deleteSimulationEquipmentById(@RequestBody int simulationEquipmentId){
         int result = simulationEquipmentService.deleteSimulationEquipment(simulationEquipmentId);
@@ -81,18 +81,11 @@ public class SimulationEquipmentController {
         }
     }
 
-//    @GetMapping("export")
-//    @ApiOperation("导出数据")
-//    public R exportExcel(HttpServletResponse response){
-//        try{
-//            this.setExcelResponseProp(response, "虚拟仿真设备列表");
-//        }
-//    }
-//
-//    private void setExcelResponseProp(HttpServletResponse response, String rawFileName) throws UnsupportedEncodingException {
-//        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-//        response.setCharacterEncoding("utf-8");
-//        String fileName = URLEncoder.encode(rawFileName, "UTF-8").replaceAll("\+", "%20");
-//        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
-//    }
+
+    @GetMapping(value = "downloadExcel")
+    @ApiOperation(value = "导出数据", notes = "export", produces = "application/octet-stream")
+    public void downloadExcel(HttpServletResponse response) throws IOException {
+        simulationEquipmentService.downloadSEExcel(response);
+    }
+
 }
