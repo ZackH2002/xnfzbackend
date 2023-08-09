@@ -5,11 +5,14 @@ import com.hwadee.common.R;
 import com.hwadee.entity.SimulationEquipment;
 import com.hwadee.entity.vo.SimulationEquipmentReq;
 import com.hwadee.service.ISimulationEquipmentService;
+import com.sun.deploy.net.URLEncoder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,8 +26,8 @@ public class SimulationEquipmentController {
      * 获取虚拟仿真设备列表
      */
     @ApiOperation("获取虚拟仿真设备数据")
-    @PostMapping("loadSimulationEquipmentData")
-    public R loadSimulationEquipmentData(@RequestBody SimulationEquipmentReq req){
+    @GetMapping("loadSimulationEquipmentData")
+    public R loadSimulationEquipmentData(SimulationEquipmentReq req){
         System.out.println(req.getCurrent());
         Page<SimulationEquipment> page = new Page<>(req.getCurrent(), req.getSize());
         Page<SimulationEquipment> simulationEquipmentPage = simulationEquipmentService.getSimulationEquipmentPage(page);
@@ -77,4 +80,19 @@ public class SimulationEquipmentController {
             return R.error().message("删除失败");
         }
     }
+
+//    @GetMapping("export")
+//    @ApiOperation("导出数据")
+//    public R exportExcel(HttpServletResponse response){
+//        try{
+//            this.setExcelResponseProp(response, "虚拟仿真设备列表");
+//        }
+//    }
+//
+//    private void setExcelResponseProp(HttpServletResponse response, String rawFileName) throws UnsupportedEncodingException {
+//        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+//        response.setCharacterEncoding("utf-8");
+//        String fileName = URLEncoder.encode(rawFileName, "UTF-8").replaceAll("\+", "%20");
+//        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+//    }
 }
