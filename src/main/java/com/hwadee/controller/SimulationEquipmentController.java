@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -80,11 +81,39 @@ public class SimulationEquipmentController {
         }
     }
 
+    /**
+     * 根据设备编号、设备名称查询
+     */
+    @ApiOperation("获取虚拟仿真设备数据")
+    @GetMapping("getSimulationEquipment")
+    public R getSimulationEquipmentByNumberOrName(String number, String name){
+        Map<String, Object> resultMap = new HashMap<>();
+        List<SimulationEquipment> data;
+        if(number!=null && name!=null){
+            data = simulationEquipmentService.getSimulationEquipmentByNumberAndName(number, name);
+        }
+        else if(number!=null){
+            data = simulationEquipmentService.getSimulationEquipmentByNumber(number);
+        }
+        else if(name!=null){
+            data = simulationEquipmentService.getSimulationEquipmentByName(name);
+        }
+        else {
+            return R.error().message("查询失败，请输入数据");
+        }
+        resultMap.put("data", data);
+        return R.ok().message("查询成功").data(resultMap);
+    }
 
+
+    /**
+     * 将虚拟仿真设备数据导出为Excel
+     * @param response
+     * @throws IOException
+     */
     @GetMapping(value = "downloadExcel")
     @ApiOperation(value = "导出数据", notes = "export", produces = "application/octet-stream")
     public void downloadExcel(HttpServletResponse response) throws IOException {
         simulationEquipmentService.downloadSEExcel(response);
     }
-
 }

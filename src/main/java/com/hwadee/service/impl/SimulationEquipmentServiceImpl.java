@@ -56,6 +56,21 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
         EasyExcel.write(response.getOutputStream(), SimulationEquipment.class).sheet("sheet1").doWrite(data());
     }
 
+    @Override
+    public List<SimulationEquipment> getSimulationEquipmentByNumber(String number) {
+        return simulationEquipmentMapper.getSEByNumber(number);
+    }
+
+    @Override
+    public List<SimulationEquipment> getSimulationEquipmentByName(String name) {
+        return simulationEquipmentMapper.getSEByName(name);
+    }
+
+    @Override
+    public List<SimulationEquipment> getSimulationEquipmentByNumberAndName(String number, String name) {
+        return simulationEquipmentMapper.getSEByNumberAndName(number, name);
+    }
+
     private List<SimulationEquipment> data(){
         List<Dictionary> dictionaries = dictionaryMapper.listDictionary();
         Map<String, String> statusMap = new HashMap<>();
@@ -63,7 +78,7 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
         Map<String, String> purposeMap = new HashMap<>();
         Map<String, String> supplierMap = new HashMap<>();
 
-        for(Dictionary dictionary: dictionaries){
+        for(Dictionary dictionary : dictionaries){
             if(dictionary.getTypeCode().equals("status")){
                 statusMap.put(dictionary.getCodeValue(), dictionary.getCodeName());
             }
