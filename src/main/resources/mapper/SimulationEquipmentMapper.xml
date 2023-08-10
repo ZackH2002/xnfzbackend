@@ -53,23 +53,6 @@
         from simulation_equipment where name like concat('%', #{name},'%');
     </select>
 
-    <select id="getSEByNumberAndName" resultType="SimulationEquipment">
-        select simulation_equipment_id,
-               name,
-               number,
-               type,
-               software_system,
-               version_number,
-               supplier,
-               status,
-               purpose,
-               laboratory_id,
-               thumbnail,
-               create_time,
-               update_time
-        from simulation_equipment where number = #{number} and name = #{name};
-    </select>
-
     <select id="getNumberSimulationEquipmentsByLaboratoryId" resultType="Integer">
         select count(simulation_equipment_id) from simulation_equipment where laboratory_id = #{laboratoryId}
     </select>
