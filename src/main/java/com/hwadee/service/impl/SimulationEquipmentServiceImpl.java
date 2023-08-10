@@ -1,6 +1,7 @@
 package com.hwadee.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hwadee.entity.SimulationEquipment;
@@ -56,21 +57,6 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
         EasyExcel.write(response.getOutputStream(), SimulationEquipment.class).sheet("sheet1").doWrite(data());
     }
 
-    @Override
-    public List<SimulationEquipment> getSimulationEquipmentByNumber(String number) {
-        return simulationEquipmentMapper.getSEByNumber(number);
-    }
-
-    @Override
-    public List<SimulationEquipment> getSimulationEquipmentByName(String name) {
-        return simulationEquipmentMapper.getSEByName(name);
-    }
-
-    @Override
-    public List<SimulationEquipment> getSimulationEquipmentByNumberAndName(String number, String name) {
-        return simulationEquipmentMapper.getSEByNumberAndName(number, name);
-    }
-
     private List<SimulationEquipment> data(){
         List<Dictionary> dictionaries = dictionaryMapper.listDictionary();
         Map<String, String> statusMap = new HashMap<>();
@@ -101,5 +87,32 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
             simulationEquipment.setPurpose(purposeMap.get(simulationEquipment.getPurpose()));
         }
         return simulationEquipments;
+    }
+
+    @Override
+    public List<SimulationEquipment> getSimulationEquipmentByNumber(String number) {
+        return simulationEquipmentMapper.getSEByNumber(number);
+    }
+
+    @Override
+    public List<SimulationEquipment> getSimulationEquipmentByName(String name) {
+        return simulationEquipmentMapper.getSEByName(name);
+    }
+
+    @Override
+    public List<SimulationEquipment> getSimulationEquipmentByNumberAndName(String number, String name) {
+        return simulationEquipmentMapper.getSEByNumberAndName(number, name);
+    }
+
+    @Override
+    public int getNumberSimulationEquipmentsByLaboratoryId(int laboratoryId) {
+        return simulationEquipmentMapper.getNumberSimulationEquipmentsByLaboratoryId(laboratoryId);
+    }
+
+    @Override
+    public List<SimulationEquipment> getSEByLaboratoryId(int laboratoryId) {
+        QueryWrapper<SimulationEquipment> wrapper = new QueryWrapper<>();
+        wrapper.eq("laboratory_id", laboratoryId);
+        return simulationEquipmentMapper.selectList(wrapper);
     }
 }

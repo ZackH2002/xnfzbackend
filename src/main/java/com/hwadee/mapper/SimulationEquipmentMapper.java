@@ -14,4 +14,10 @@ public interface SimulationEquipmentMapper extends BaseMapper<SimulationEquipmen
     List<SimulationEquipment> getSEByNumber(String number);
     List<SimulationEquipment> getSEByName(String name);
     List<SimulationEquipment> getSEByNumberAndName(String number, String name);
+    /**
+     * 根据实验室id 获取该实验室下的设备数目
+     * @param laboratoryId
+     * @return
+     */
+    int getNumberSimulationEquipmentsByLaboratoryId(int laboratoryId);
 }

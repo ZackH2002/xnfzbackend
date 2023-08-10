@@ -17,4 +17,6 @@ public interface ISimulationEquipmentService extends IService<SimulationEquipmen
     List<SimulationEquipment> getSimulationEquipmentByNumber(String number);
     List<SimulationEquipment> getSimulationEquipmentByName(String name);
     List<SimulationEquipment> getSimulationEquipmentByNumberAndName(String number, String name);
+    int getNumberSimulationEquipmentsByLaboratoryId(int laboratoryId);
+    List<SimulationEquipment> getSEByLaboratoryId(int laboratoryId);
 }

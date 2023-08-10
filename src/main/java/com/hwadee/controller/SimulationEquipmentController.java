@@ -84,7 +84,7 @@ public class SimulationEquipmentController {
     /**
      * 根据设备编号、设备名称查询
      */
-    @ApiOperation("获取虚拟仿真设备数据")
+    @ApiOperation("根据设备编号、设备名称查询")
     @GetMapping("getSimulationEquipment")
     public R getSimulationEquipmentByNumberOrName(String number, String name){
         Map<String, Object> resultMap = new HashMap<>();
@@ -115,5 +115,43 @@ public class SimulationEquipmentController {
     @ApiOperation(value = "导出数据", notes = "export", produces = "application/octet-stream")
     public void downloadExcel(HttpServletResponse response) throws IOException {
         simulationEquipmentService.downloadSEExcel(response);
+    }
+
+    /**
+     * 根据实验室id 得到该实验室下的虚拟仿真设备的数量
+     * @param laboratoryId
+     * @return
+     */
+    @GetMapping(value = "getNumberOfSEByLabId")
+    @ApiOperation(value = "获取实验室设备数量")
+    public R getNumberSimulationEquipmentsByLaboratoryId(int laboratoryId){
+        int number = simulationEquipmentService.getNumberSimulationEquipmentsByLaboratoryId(laboratoryId);
+        if(number >= 0){
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("data", number);
+            return R.ok().message("获取数量成功").data(resultMap);
+        }
+        else{
+            return R.error().message("获取数量失败");
+        }
+    }
+
+    /**
+     * 根据实验室id获取实验室的设备列表
+     * @param laboratoryId
+     * @return
+     */
+    @GetMapping(value = "getSEByLaboratoryId")
+    @ApiOperation(value = "获取实验室的设备")
+    public R getSEByLaboratoryId(int laboratoryId){
+        List<SimulationEquipment> simulationEquipments = simulationEquipmentService.getSEByLaboratoryId(laboratoryId);
+        if(!simulationEquipments.isEmpty()){
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("data", simulationEquipments);
+            return R.ok().message("获取设备成功").data(resultMap);
+        }
+        else{
+            return R.ok().message("获取设备失败");
+        }
     }
 }
