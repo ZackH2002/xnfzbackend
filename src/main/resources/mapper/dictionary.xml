@@ -3,7 +3,7 @@
 <mapper namespace="com.hwadee.mapper.DictionaryMapper">
     <!--namespace根据自己需要创建的的mapper的路径和名称填写-->
     <!--根据typeCode和parentItemId查询-->
-    <select id="listByTypeCodeAndPid" resultType="Dictionary">
+    <select id="listByTypeCodeAndPid" resultType="com.hwadee.entity.Dictionary">
         select
             dicItemId,
             codeName,
@@ -13,7 +13,7 @@
         from dictionary where isDelete = 1 and typeCode = #{typeCode} and parentItemId = #{parentItemId}
     </select>
 
-    <select id="listDictionary" resultType="Dictionary">
+    <select id="listDictionary" resultType="com.hwadee.entity.Dictionary">
         select
             dicItemId,
             codeName,

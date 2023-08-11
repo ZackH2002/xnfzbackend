@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hwadee.mapper.SimulationEquipmentMapper">
     <!--namespace根据自己需要创建的的mapper的路径和名称填写-->
-    <select id="downLoadSEExcel" resultType="SimulationEquipment">
+    <select id="downLoadSEExcel" resultType="com.hwadee.entity.SimulationEquipment">
         select simulation_equipment_id,
                name,
                number,
@@ -17,6 +17,40 @@
                create_time,
                update_time
         from simulation_equipment;
+    </select>
+
+    <select id="getSEByNumber" resultType="com.hwadee.entity.SimulationEquipment">
+        select simulation_equipment_id,
+               name,
+               number,
+               type,
+               software_system,
+               version_number,
+               supplier,
+               status,
+               purpose,
+               laboratory_id,
+               thumbnail,
+               create_time,
+               update_time
+        from simulation_equipment where number like concat(#{number},'%');
+    </select>
+
+    <select id="getSEByName" resultType="com.hwadee.entity.SimulationEquipment">
+        select simulation_equipment_id,
+               name,
+               number,
+               type,
+               software_system,
+               version_number,
+               supplier,
+               status,
+               purpose,
+               laboratory_id,
+               thumbnail,
+               create_time,
+               update_time
+        from simulation_equipment where name like concat('%', #{name},'%');
     </select>
 
     <select id="getNumberSimulationEquipmentsByLaboratoryId" resultType="Integer">

@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @TableName("laboratory")
 public class Laboratory implements Serializable {
-    @TableId(value = "laboratoryId", type = IdType.AUTO)
+    @TableId(value = "laboratory_id", type = IdType.AUTO)
     /**
      * 实验室Id
      */
@@ -20,51 +20,31 @@ public class Laboratory implements Serializable {
      */
     private String laboratoryName;
     /**
-     * 实验室地址
+     * 工位数量
      */
-    private String address;
+    private int stationNum;
     /**
      * 实验室面积
      */
     private Double area;
     /**
-     * 实验室管理员
-     */
-    private String chargePerson;
-    /**
-     *  实验室详情
-     */
-    private String detail;
-    /**
      * 设施价格
      */
     private Double facilitiesPrice;
     /**
-     *  资源名称
+     * 实验室地址
      */
-    private String resourceName;
-    /**
-     * 联系电话
-     */
-    private String phone;
-    /**
-     * 实验室简介
-     */
-    private String profile;
-    /**
-     * 工位数量
-     */
-    private int stationNum;
-    /**
-     * 缩略图
-     */
-    private String thumbnail;
-    /**
-     * 创建时间
-     */
-    private Date createTime;
+    private String address;
     /**
      * 更新时间
      */
     private Date updateTime;
+    /**
+     * 概要介绍
+     */
+    private String profile;
+    /**
+     * 简介
+     */
+    private String detail;
 }
