@@ -7,7 +7,6 @@ import com.hwadee.entity.vo.SimulationEquipmentReq;
 import com.hwadee.service.ISimulationEquipmentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -87,14 +86,15 @@ public class SimulationEquipmentController {
      */
     @ApiOperation("根据设备编号、设备名称查询")
     @GetMapping("getSimulationEquipment")
-    public R getSimulationEquipmentByNumberOrName(String number,String name){
+    public R getSimulationEquipmentByNumberOrName(SimulationEquipmentReq req, String number,String name){
+        Page<SimulationEquipment> page = new Page<>(req.getCurrent(), req.getSize());
         Map<String, Object> resultMap = new HashMap<>();
-        List<SimulationEquipment> data;
+        Page<SimulationEquipment> data;
         if(number!=null){
-            data = simulationEquipmentService.getSimulationEquipmentByNumber(number);
+            data = simulationEquipmentService.getSimulationEquipmentByNumber(page, number);
         }
         else if(name!=null){
-            data = simulationEquipmentService.getSimulationEquipmentByName(name);
+            data = simulationEquipmentService.getSimulationEquipmentByName(page, name);
         }
         else {
             return R.error().message("查询失败，请输入数据");

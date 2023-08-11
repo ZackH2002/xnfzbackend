@@ -90,18 +90,17 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
     }
 
     @Override
-    public List<SimulationEquipment> getSimulationEquipmentByNumber(String number) {
-        return simulationEquipmentMapper.getSEByNumber(number);
+    public Page<SimulationEquipment> getSimulationEquipmentByNumber(Page<SimulationEquipment> page, String number) {
+        QueryWrapper<SimulationEquipment> wrapper = new QueryWrapper<>();
+        wrapper.likeRight("number", number);
+        return simulationEquipmentMapper.selectPage(page, wrapper);
     }
 
     @Override
-    public List<SimulationEquipment> getSimulationEquipmentByName(String name) {
-        return simulationEquipmentMapper.getSEByName(name);
-    }
-
-    @Override
-    public List<SimulationEquipment> getSimulationEquipmentByNumberAndName(String number, String name) {
-        return simulationEquipmentMapper.getSEByNumberAndName(number, name);
+    public Page<SimulationEquipment> getSimulationEquipmentByName(Page<SimulationEquipment> page, String name) {
+        QueryWrapper<SimulationEquipment> wrapper = new QueryWrapper<>();
+        wrapper.like("name", name);
+        return simulationEquipmentMapper.selectPage(page, wrapper);
     }
 
     @Override

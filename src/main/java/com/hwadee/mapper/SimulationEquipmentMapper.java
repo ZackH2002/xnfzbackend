@@ -11,9 +11,6 @@ import java.util.List;
 @Mapper
 public interface SimulationEquipmentMapper extends BaseMapper<SimulationEquipment> {
     List<SimulationEquipment> downLoadSEExcel();
-    List<SimulationEquipment> getSEByNumber(String number);
-    List<SimulationEquipment> getSEByName(String name);
-    List<SimulationEquipment> getSEByNumberAndName(String number, String name);
     /**
      * 根据实验室id 获取该实验室下的设备数目
      * @param laboratoryId

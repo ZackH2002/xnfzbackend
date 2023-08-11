@@ -14,9 +14,8 @@ public interface ISimulationEquipmentService extends IService<SimulationEquipmen
     int addSimulationEquipment(SimulationEquipment simulationEquipment);
     int deleteSimulationEquipment(int simulationEquipmentId);
     void downloadSEExcel(HttpServletResponse response) throws IOException;
-    List<SimulationEquipment> getSimulationEquipmentByNumber(String number);
-    List<SimulationEquipment> getSimulationEquipmentByName(String name);
-    List<SimulationEquipment> getSimulationEquipmentByNumberAndName(String number, String name);
+    Page<SimulationEquipment> getSimulationEquipmentByNumber(Page<SimulationEquipment> page, String number);
+    Page<SimulationEquipment> getSimulationEquipmentByName(Page<SimulationEquipment> page, String name);
     int getNumberSimulationEquipmentsByLaboratoryId(int laboratoryId);
     List<SimulationEquipment> getSEByLaboratoryId(int laboratoryId);
 }

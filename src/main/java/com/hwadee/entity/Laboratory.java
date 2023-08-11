@@ -67,5 +67,4 @@ public class Laboratory implements Serializable {
      * 更新时间
      */
     private Date updateTime;
-
 }
