@@ -28,7 +28,6 @@ public class LaboratoryController {
         System.out.println(res.getCurrent());
         Page<Laboratory> page = new Page<>(res.getCurrent(), res.getSize());
         Page<Laboratory> laboratoryPage = laboratoryService.getLaboratoryPage(page);
-//        List<Laboratory> laboratories = laboratoryService.list();
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("data", laboratoryPage);
         return R.ok().message("获取实验室设备成功!").data(resultMap);

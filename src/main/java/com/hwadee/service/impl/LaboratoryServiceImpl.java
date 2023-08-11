@@ -17,11 +17,6 @@ public class LaboratoryServiceImpl extends ServiceImpl<LaboratoryMapper, Laborat
     private LaboratoryMapper laboratoryMapper;
 
     @Override
-    public List<Laboratory> list() {
-        return laboratoryMapper.listLaboratory();
-    }
-
-    @Override
     public Page<Laboratory> getLaboratoryPage(Page<Laboratory> page) {
         return laboratoryMapper.selectPage(page,null);
     }

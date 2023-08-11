@@ -16,6 +16,10 @@ public class Laboratory implements Serializable {
      */
     private int laboratoryId;
     /**
+     * 设备编号
+     */
+    private String laboratoryNumber;
+    /**
      * 实验室名称
      */
     private String laboratoryName;

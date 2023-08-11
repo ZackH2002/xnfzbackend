@@ -86,7 +86,7 @@ public class SimulationEquipmentController {
      */
     @ApiOperation("根据设备编号、设备名称查询")
     @GetMapping("getSimulationEquipment")
-    public R getSimulationEquipmentByNumberOrName(SimulationEquipmentReq req, String number,String name){
+    public R getSimulationEquipmentByNumberOrName(SimulationEquipmentReq req, String number, String name){
         Page<SimulationEquipment> page = new Page<>(req.getCurrent(), req.getSize());
         Map<String, Object> resultMap = new HashMap<>();
         Page<SimulationEquipment> data;
