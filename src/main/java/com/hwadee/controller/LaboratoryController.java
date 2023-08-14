@@ -2,6 +2,7 @@ package com.hwadee.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hwadee.common.R;
 import com.hwadee.entity.Laboratory;
+import com.hwadee.entity.vo.LaboratoryReturn;
 import com.hwadee.entity.vo.LaboratoryVo;
 import com.hwadee.service.ILaboratoryService;
 import io.swagger.annotations.Api;
@@ -28,8 +29,8 @@ public class LaboratoryController {
     @GetMapping("listLaboratory")
     public R getLaboratoryPage(LaboratoryVo res){
         System.out.println(res.getCurrent());
-        Page<Laboratory> page = new Page<>(res.getCurrent(), res.getSize());
-        Page<Laboratory> laboratoryPage = laboratoryService.getLaboratoryPage(page);
+        Page<LaboratoryReturn> page = new Page<>(res.getCurrent(), res.getSize());
+        Page<LaboratoryReturn> laboratoryPage = laboratoryService.getLaboratoryPage(page);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("data", laboratoryPage);
         return R.ok().message("获取实验室设备成功!").data(resultMap);

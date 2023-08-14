@@ -3,6 +3,7 @@ package com.hwadee.service.impl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hwadee.entity.Laboratory;
+import com.hwadee.entity.vo.LaboratoryReturn;
 import com.hwadee.mapper.LaboratoryMapper;
 import com.hwadee.service.ILaboratoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,9 @@ public class LaboratoryServiceImpl extends ServiceImpl<LaboratoryMapper, Laborat
     private LaboratoryMapper laboratoryMapper;
 
     @Override
-    public Page<Laboratory> getLaboratoryPage(Page<Laboratory> page) {
-        return laboratoryMapper.selectPage(page,null);
+    public Page<LaboratoryReturn> getLaboratoryPage(Page<LaboratoryReturn> page) {
+        //return laboratoryMapper.selectPage(page,null);
+        return laboratoryMapper.selectPage(page);
     }
 
     @Override
@@ -41,6 +43,4 @@ public class LaboratoryServiceImpl extends ServiceImpl<LaboratoryMapper, Laborat
     public List<Laboratory> listLaboratory() {
         return laboratoryMapper.selectList(null);
     }
-
-
 }
