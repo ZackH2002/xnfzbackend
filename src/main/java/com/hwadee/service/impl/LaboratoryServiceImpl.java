@@ -36,4 +36,11 @@ public class LaboratoryServiceImpl extends ServiceImpl<LaboratoryMapper, Laborat
         laboratory.setUpdateTime(new Date());
         return laboratoryMapper.updateById(laboratory);
     }
+
+    @Override
+    public List<Laboratory> listLaboratory() {
+        return laboratoryMapper.selectList(null);
+    }
+
+
 }
