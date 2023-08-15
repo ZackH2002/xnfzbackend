@@ -109,10 +109,10 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
     }
 
     @Override
-    public List<SimulationEquipment> getSEByLaboratoryId(int laboratoryId) {
+    public Page<SimulationEquipment> getSEByLaboratoryId(Page<SimulationEquipment> page,int laboratoryId) {
         QueryWrapper<SimulationEquipment> wrapper = new QueryWrapper<>();
         wrapper.eq("laboratory_id", laboratoryId);
-        return simulationEquipmentMapper.selectList(wrapper);
+        return simulationEquipmentMapper.selectPage(page, wrapper);
     }
 
     @Override
