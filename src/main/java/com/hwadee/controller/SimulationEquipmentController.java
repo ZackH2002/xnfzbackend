@@ -141,15 +141,12 @@ public class SimulationEquipmentController {
      */
     @GetMapping(value = "getSEByLaboratoryId")
     @ApiOperation(value = "获取实验室的设备")
-    public R getSEByLaboratoryId(int laboratoryId){
-        List<SimulationEquipment> simulationEquipments = simulationEquipmentService.getSEByLaboratoryId(laboratoryId);
-        if(!simulationEquipments.isEmpty()){
-            Map<String, Object> resultMap = new HashMap<>();
-            resultMap.put("data", simulationEquipments);
-            return R.ok().message("获取设备成功").data(resultMap);
-        }
-        else{
-            return R.ok().message("获取设备失败");
-        }
+    public R getSEByLaboratoryId(SimulationEquipmentReq req, int laboratoryId){
+        Page<SimulationEquipment> page = new Page<>(req.getCurrent(), req.getSize());
+        Map<String, Object> resultMap = new HashMap<>();
+        Page<SimulationEquipment> data;
+        data = simulationEquipmentService.getSEByLaboratoryId(page, laboratoryId);
+        resultMap.put("data", data);
+        return R.ok().message("获取设备成功").data(resultMap);
     }
 }

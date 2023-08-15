@@ -17,5 +17,5 @@ public interface ISimulationEquipmentService extends IService<SimulationEquipmen
     Page<SimulationEquipment> getSimulationEquipmentByNumber(Page<SimulationEquipment> page, String number);
     Page<SimulationEquipment> getSimulationEquipmentByName(Page<SimulationEquipment> page, String name);
     int getNumberSimulationEquipmentsByLaboratoryId(int laboratoryId);
-    List<SimulationEquipment> getSEByLaboratoryId(int laboratoryId);
+    Page<SimulationEquipment> getSEByLaboratoryId(Page<SimulationEquipment> page, int laboratoryId);
 }

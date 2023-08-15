@@ -13,7 +13,7 @@
                lab.update_time,
                lab.profile,
                lab.detail,
-               count(lab.laboratory_id) as simulation_equipment_num from laboratory lab left join simulation_equipment se on se.laboratory_id = lab.laboratory_id
+               count(DISTINCT se.simulation_equipment_id) as simulation_equipment_num from laboratory lab left join simulation_equipment se on se.laboratory_id = lab.laboratory_id
         group by lab.laboratory_id
     </select>
 </mapper>
