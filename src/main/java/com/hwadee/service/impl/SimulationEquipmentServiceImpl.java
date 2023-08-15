@@ -114,4 +114,19 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
         wrapper.eq("laboratory_id", laboratoryId);
         return simulationEquipmentMapper.selectList(wrapper);
     }
+
+    @Override
+    public List<Map<String, Integer>> getStatusCounts() {
+        return simulationEquipmentMapper.getStatusCounts();
+    }
+
+    @Override
+    public List<Map<String, Integer>> getTypeCounts() {
+        return simulationEquipmentMapper.getTypeCounts();
+    }
+
+    @Override
+    public int getEquipmentCount() {
+        return simulationEquipmentMapper.getEquipmentCount();
+    }
 }

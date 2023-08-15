@@ -149,7 +149,46 @@ public class SimulationEquipmentController {
             return R.ok().message("获取设备成功").data(resultMap);
         }
         else{
-            return R.ok().message("获取设备失败");
+            return R.error().message("获取设备失败");
+        }
+    }
+
+    @GetMapping(value = "/statusCounts")
+    @ApiOperation(value = "获取每个状态的数量")
+    public R getStatusCounts() {
+        List<Map<String, Integer>> statusCounts = simulationEquipmentService.getStatusCounts();
+        if(!statusCounts.isEmpty()){
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("data", statusCounts);
+            return R.ok().message("获取设备状态数量成功").data(resultMap);
+        }else {
+            return R.error().message("获取设备状态数量成功");
+        }
+    }
+
+    @ApiOperation(value = "获取每个类型数量")
+    @GetMapping(value = "/typeCounts")
+    public R getTypeCounts(){
+        List<Map<String, Integer>> typeCounts = simulationEquipmentService.getTypeCounts();
+        if(!typeCounts.isEmpty()){
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("data", typeCounts);
+            return R.ok().message("获取设备类型数量成功").data(resultMap);
+        }else {
+            return R.error().message("获取设备类型数量失败");
+        }
+    }
+
+    @ApiOperation(value = "获取设备数量")
+    @GetMapping("/count")
+    public R getEquipmentCount() {
+        int equipmentCount = simulationEquipmentService.getEquipmentCount();
+        if(equipmentCount!=0){
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("data", equipmentCount);
+            return R.ok().message("获取设备数量成功").data(resultMap);
+        }else {
+            return R.error().message("获取设备数量失败");
         }
     }
 }

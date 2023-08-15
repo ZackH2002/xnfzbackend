@@ -43,4 +43,9 @@ public class LaboratoryServiceImpl extends ServiceImpl<LaboratoryMapper, Laborat
     public List<Laboratory> listLaboratory() {
         return laboratoryMapper.selectList(null);
     }
+
+    @Override
+    public int getLaboratoryCount() {
+        return laboratoryMapper.getLaboratoryCount();
+    }
 }

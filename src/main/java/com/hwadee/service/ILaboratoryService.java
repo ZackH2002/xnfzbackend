@@ -13,4 +13,6 @@ public interface ILaboratoryService extends IService<Laboratory> {
     int deleteLaboratory (int laboratoryId);
     int updateLaboratory(Laboratory laboratory);
     List<Laboratory> listLaboratory();
+    int getLaboratoryCount();
+
 }

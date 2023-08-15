@@ -7,6 +7,7 @@ import com.hwadee.entity.SimulationEquipment;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface ISimulationEquipmentService extends IService<SimulationEquipment> {
     Page<SimulationEquipment> getSimulationEquipmentPage(Page<SimulationEquipment> page);
@@ -18,4 +19,9 @@ public interface ISimulationEquipmentService extends IService<SimulationEquipmen
     Page<SimulationEquipment> getSimulationEquipmentByName(Page<SimulationEquipment> page, String name);
     int getNumberSimulationEquipmentsByLaboratoryId(int laboratoryId);
     List<SimulationEquipment> getSEByLaboratoryId(int laboratoryId);
+    List<Map<String, Integer>> getStatusCounts();
+
+    List<Map<String, Integer>> getTypeCounts();
+
+    int getEquipmentCount();
 }

@@ -89,4 +89,17 @@ public class LaboratoryController {
         resultMap.put("data", list);
         return R.ok().message("获取实验室设备成功!").data(resultMap);
     }
+
+    @ApiOperation("获取实验室数量")
+    @GetMapping("getLaboratoryCount")
+    public R getLaboratoryCount(){
+        int laboratoryCount = laboratoryService.getLaboratoryCount();
+        if(laboratoryCount!=0){
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("data", laboratoryCount);
+            return R.ok().message("获取实验室数量成功").data(resultMap);
+        }else {
+            return R.error().message("获取实验室数量失败");
+        }
+    }
 }
