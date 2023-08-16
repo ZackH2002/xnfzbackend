@@ -28,7 +28,9 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
     private DictionaryMapper dictionaryMapper;
     @Override
     public Page<SimulationEquipment> getSimulationEquipmentPage(Page<SimulationEquipment> page) {
-        return simulationEquipmentMapper.selectPage(page, null);
+        QueryWrapper<SimulationEquipment> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("update_time");
+        return simulationEquipmentMapper.selectPage(page, queryWrapper);
     }
 
     @Override
@@ -40,6 +42,7 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
     @Override
     public int addSimulationEquipment(SimulationEquipment simulationEquipment) {
         simulationEquipment.setCreateTime(new Date());
+        simulationEquipment.setUpdateTime(new Date());
         return simulationEquipmentMapper.insert(simulationEquipment);
     }
 
@@ -93,6 +96,7 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
     public Page<SimulationEquipment> getSimulationEquipmentByNumber(Page<SimulationEquipment> page, String number) {
         QueryWrapper<SimulationEquipment> wrapper = new QueryWrapper<>();
         wrapper.likeRight("number", number);
+        wrapper.orderByDesc("update_time");
         return simulationEquipmentMapper.selectPage(page, wrapper);
     }
 
@@ -100,6 +104,7 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
     public Page<SimulationEquipment> getSimulationEquipmentByName(Page<SimulationEquipment> page, String name) {
         QueryWrapper<SimulationEquipment> wrapper = new QueryWrapper<>();
         wrapper.like("name", name);
+        wrapper.orderByDesc("update_time");
         return simulationEquipmentMapper.selectPage(page, wrapper);
     }
 
@@ -112,6 +117,7 @@ public class SimulationEquipmentServiceImpl extends ServiceImpl<SimulationEquipm
     public Page<SimulationEquipment> getSEByLaboratoryId(Page<SimulationEquipment> page,int laboratoryId) {
         QueryWrapper<SimulationEquipment> wrapper = new QueryWrapper<>();
         wrapper.eq("laboratory_id", laboratoryId);
+        wrapper.orderByDesc("update_time");
         return simulationEquipmentMapper.selectPage(page, wrapper);
     }
 

@@ -16,41 +16,7 @@
                thumbnail,
                create_time,
                update_time
-        from simulation_equipment order by simulation_equipment_id desc ;
-    </select>
-
-    <select id="getSEByNumber" resultType="com.hwadee.entity.SimulationEquipment">
-        select simulation_equipment_id,
-               name,
-               number,
-               type,
-               software_system,
-               version_number,
-               supplier,
-               status,
-               purpose,
-               laboratory_id,
-               thumbnail,
-               create_time,
-               update_time
-        from simulation_equipment where number like concat(#{number},'%') order by simulation_equipment_id desc;
-    </select>
-
-    <select id="getSEByName" resultType="com.hwadee.entity.SimulationEquipment">
-        select simulation_equipment_id,
-               name,
-               number,
-               type,
-               software_system,
-               version_number,
-               supplier,
-               status,
-               purpose,
-               laboratory_id,
-               thumbnail,
-               create_time,
-               update_time
-        from simulation_equipment where name like concat('%', #{name},'%') order by simulation_equipment_id desc;
+        from simulation_equipment order by update_time desc ;
     </select>
 
     <select id="getNumberSimulationEquipmentsByLaboratoryId" resultType="Integer">
