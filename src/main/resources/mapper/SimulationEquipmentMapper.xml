@@ -16,7 +16,7 @@
                thumbnail,
                create_time,
                update_time
-        from simulation_equipment;
+        from simulation_equipment order by simulation_equipment_id desc ;
     </select>
 
     <select id="getSEByNumber" resultType="com.hwadee.entity.SimulationEquipment">
@@ -33,7 +33,7 @@
                thumbnail,
                create_time,
                update_time
-        from simulation_equipment where number like concat(#{number},'%');
+        from simulation_equipment where number like concat(#{number},'%') order by simulation_equipment_id desc;
     </select>
 
     <select id="getSEByName" resultType="com.hwadee.entity.SimulationEquipment">
@@ -50,7 +50,7 @@
                thumbnail,
                create_time,
                update_time
-        from simulation_equipment where name like concat('%', #{name},'%');
+        from simulation_equipment where name like concat('%', #{name},'%') order by simulation_equipment_id desc;
     </select>
 
     <select id="getNumberSimulationEquipmentsByLaboratoryId" resultType="Integer">

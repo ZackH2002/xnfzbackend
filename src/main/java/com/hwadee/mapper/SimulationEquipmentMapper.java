@@ -27,7 +27,8 @@ public interface SimulationEquipmentMapper extends BaseMapper<SimulationEquipmen
             "GROUP BY e.status, d.codeName")
     List<Map<String, Integer>> getStatusCounts();
 
-    @Select("SELECT d.codeName AS name, COUNT(*) AS value FROM simulation_equipment e JOIN dictionary d ON e.type = d.codeValue WHERE d.typeCode = 'simeqtype' GROUP BY e.type")
+    @Select("SELECT d.codeName AS name, COUNT(*) AS value FROM simulation_equipment e JOIN dictionary d " +
+            "ON e.type = d.codeValue WHERE d.typeCode = 'simeqtype' GROUP BY e.type, d.codeName")
     List<Map<String, Integer>> getTypeCounts();
 
     @Select("SELECT COUNT(*) FROM simulation_equipment")

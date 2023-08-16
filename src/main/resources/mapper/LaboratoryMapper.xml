@@ -14,6 +14,6 @@
                lab.profile,
                lab.detail,
                count(DISTINCT se.simulation_equipment_id) as simulation_equipment_num from laboratory lab left join simulation_equipment se on se.laboratory_id = lab.laboratory_id
-        group by lab.laboratory_id
+        group by lab.laboratory_id ORDER BY lab.laboratory_id DESC
     </select>
 </mapper>
